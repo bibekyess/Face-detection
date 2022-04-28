@@ -1,5 +1,3 @@
-# installing required libraries
-
 import os
 
 import cv2
@@ -11,12 +9,12 @@ import numpy as np
 # encodes the face-images
 def get_encoded_faces():
     encoded_result = {}
-    for dir_path, dir_names, face_names in os.walk("./faces"):
-        for face in face_names:
-            if face.endswith(".jpg") or face.endswith(".png"):
-                face_img = fr.load_image_file("faces/" + face)
-                encoding = fr.face_encodings(face_img)[0]
-                encoded_result[face.split(".")[0]] = encoding
+    face_names = os.listdir("./faces")
+    for face in face_names:
+        if (face.endswith(".png")):
+            face_img = fr.load_image_file("./faces/" + face)
+            encoding = fr.face_encodings(face_img)[0]
+            encoded_result[face.split(".")[0]] = encoding
     return encoded_result
 
 
